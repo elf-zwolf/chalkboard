@@ -2,11 +2,36 @@ package com.usechalkboard.birthdays.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.core.view.isVisible
 import com.usechalkboard.birthdays.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PeopleListActivity : AppCompatActivity() {
+    private val vm: PeopleListViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_people_list)
+
+        vm.screenState.observe(this, this::handleState)
+    }
+
+    private fun handleState(state: ScreenState) {
+        val activityIndicator: ProgressBar = findViewById(R.id.activityIndicator)
+        when (state) {
+            ScreenState.Loading -> {
+                activityIndicator.isVisible = true
+            }
+            ScreenState.Success -> {
+                activityIndicator.isVisible = false
+                Toast.makeText(this, "Loaded successfully!", Toast.LENGTH_LONG).show()
+            }
+            ScreenState.Error -> {
+                activityIndicator.isVisible = false
+                Toast.makeText(this, "Could not load, sorry!", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }
