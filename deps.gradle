@@ -25,6 +25,7 @@ ext.libraries = [
         ],
         api       : [
                 retrofit: 'com.squareup.retrofit2:retrofit:2.9.0',
+                converter: 'com.squareup.retrofit2:converter-gson:2.9.0'
         ],
         http      : [
                 platform: "com.squareup.okhttp3:okhttp-bom:4.9.0",
