@@ -19,3 +19,4 @@ fun Person.dateOfBirth(): String {
     val dateTimeInUTC = offsetDateTime.withOffsetSameInstant(ZoneOffset.UTC)
     return dateTimeInUTC.format(formatter)
 }
+fun Person.age(): String = "${this.dob.age} years old"

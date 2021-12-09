@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.usechalkboard.birthdays.R
 import com.usechalkboard.birthdays.domain.entity.Person
+import com.usechalkboard.birthdays.domain.entity.age
 import com.usechalkboard.birthdays.domain.entity.initials
 import com.usechalkboard.birthdays.domain.entity.name
 import java.lang.IllegalArgumentException
@@ -42,7 +43,7 @@ class DetailsActivity : AppCompatActivity() {
             it as Person
             initials.text = it.initials()
             name.text = it.name()
-            age.text = it.dob.age.toString()
+            age.text = it.age()
            it
         } ?: run {
             throw IllegalArgumentException("Use method start to start the activity")
