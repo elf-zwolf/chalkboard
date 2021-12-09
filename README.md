@@ -16,3 +16,11 @@ In Android Studio go to File -> Open, then navigate to the folder you cloned the
 Click OK\
 Wait until the build process and indexing complete\
 Hit Run -> Run 'app'
+
+## How to run the tests
+Open terminal\
+From the root folder run:
+```bash
+./gradlew test
+```
+Also you may want to choose Run -> Run 'PeopleRepositoryUnitTest' from the Android Studio menu
