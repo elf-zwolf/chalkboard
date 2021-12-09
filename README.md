@@ -24,3 +24,18 @@ From the root folder run:
 ./gradlew test
 ```
 Also you may want to choose Run -> Run 'PeopleRepositoryUnitTest' from the Android Studio menu
+
+## If I had more time I would
+Implement the remote repository with parameters for max number of people\
+Implement pagination\
+Make sure the code has no warnings\
+Write more useful unit tests\
+Improve error handling
+
+## Why did I use those technologies
+MVVM, LiveData and Repository pattern because it fast, well documented and recommended by Google\
+Koin because it is very convenient for small and middle-size projects for changing implementations if needed
+
+## You can find me here
+On [Stackoverflow](https://stackoverflow.com/users/1005846/dmitry-guselnikov) \
+On [Github](https://github.com/elf-zwolf)
