@@ -7,7 +7,7 @@ import java.lang.RuntimeException
 class PeopleMockRepository: PeopleRepository {
     override suspend fun loadPeople(): Result<Results> {
         delay(1000)
-        return if (Math.random() < 0.5) { // Flip a coin
+        return if (Math.random() < 0.99) { // Flip a coin
             val results = Results(
                 listOf(
                     Person(
@@ -34,7 +34,7 @@ class PeopleMockRepository: PeopleRepository {
                     )
                 ),
                 Info("chalkboard",
-                1,
+                2,
                 1,
                 "1.3")
             )

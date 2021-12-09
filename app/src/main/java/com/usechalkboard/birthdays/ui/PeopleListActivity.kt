@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.RecyclerView
 import com.usechalkboard.birthdays.R
+import com.usechalkboard.birthdays.domain.entity.Person
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PeopleListActivity : AppCompatActivity() {
@@ -16,6 +18,13 @@ class PeopleListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_people_list)
 
         vm.screenState.observe(this, this::handleState)
+        vm.users.observe(this, this::handlePeople)
+    }
+
+    private fun handlePeople(people: List<Person>) {
+        val peopleList: RecyclerView = findViewById(R.id.peopleList)
+        val adapter = PeopleRecyclerAdapter(people)
+        peopleList.adapter = adapter
     }
 
     private fun handleState(state: ScreenState) {
