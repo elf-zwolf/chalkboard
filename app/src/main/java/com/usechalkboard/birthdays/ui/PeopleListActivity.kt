@@ -23,7 +23,9 @@ class PeopleListActivity : AppCompatActivity() {
 
     private fun handlePeople(people: List<Person>) {
         val peopleList: RecyclerView = findViewById(R.id.peopleList)
-        val adapter = PeopleRecyclerAdapter(people)
+        val adapter = PeopleRecyclerAdapter(people) { person ->
+            DetailsActivity.start(this@PeopleListActivity, person)
+        }
         peopleList.adapter = adapter
     }
 

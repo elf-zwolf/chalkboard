@@ -7,15 +7,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.usechalkboard.birthdays.R
 import com.usechalkboard.birthdays.domain.entity.Person
+import com.usechalkboard.birthdays.domain.entity.dateOfBirth
+import com.usechalkboard.birthdays.domain.entity.initials
+import com.usechalkboard.birthdays.domain.entity.name
 import com.usechalkboard.birthdays.ui.PeopleRecyclerAdapter.ViewHolder
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 
-class PeopleRecyclerAdapter(private val data: List<Person>) :
+class PeopleRecyclerAdapter(
+    private val data: List<Person>,
+    private val onItemClick: (Person) -> Unit
+) :
     RecyclerView.Adapter<ViewHolder>() {
-
-    val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")!!
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView
@@ -33,18 +34,15 @@ class PeopleRecyclerAdapter(private val data: List<Person>) :
         LayoutInflater.from(parent.context).inflate(R.layout.birthday_item, parent, false)
     )
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val person = data[position]
-        val personName = "${person.name.first} ${person.name.last}"
-        val initials = "${person.name.first.first()}${person.name.last.first()}"
 
-        val offsetDateTime = OffsetDateTime.parse(person.dob.date)
-        val dateTimeInUTC = offsetDateTime.withOffsetSameInstant(ZoneOffset.UTC)
-
-        holder.name.text = personName
-        holder.initials.text = initials
-        holder.dateOfBirth.text = dateTimeInUTC.format(formatter)
+        holder.name.text = person.name()
+        holder.initials.text = person.initials()
+        holder.dateOfBirth.text = person.dateOfBirth()
+        holder.itemView.setOnClickListener {
+            onItemClick(person)
+        }
     }
 
     override fun getItemCount(): Int = data.size
