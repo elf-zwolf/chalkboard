@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Birthdays">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.PeopleListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
